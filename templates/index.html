@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOOD DELIVERY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+
+<style>
+    body {
+        scroll-behavior: smooth;
+    }
+
+    #rice {
+        font-size: 48px;
+        color: black;
+        margin-right: 20px;
+    }
+
+    #glass {
+        font-size: 48px;
+        color: black;
+    }
+
+    #card {
+        font-size: 60px;
+        color: black;
+    }
+
+    legend {
+/*        border: 1px dotted green;*/
+        border-radius: 10px;
+    }
+
+    .imgrotate {
+        transform: rotate(15deg);
+    }
+
+    #one {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    #rolls {
+        position: fixed;
+        width: auto;
+        height: auto;
+        opacity: 0.4;
+        left: 8rem;
+        z-index: 1;
+    }
+
+    #featured {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+/*        width: 48%;*/
+        height: auto;
+        width: max(40vw,34rem);
+        max-width: 100%;
+        border: 2px dotted orange;
+        border-radius: 5px;
+        padding: 17px;
+        flex-shrink: 1;
+    }
+    #featured h2{
+        font-family: Roboto;
+        text-align: center;
+    }
+
+    #featured inner {
+        max-width: inherit;
+        height: auto;
+        padding: 5px;
+    }
+
+    #featured img {
+        float: left;
+        text-wrap: wrap;
+        margin-right: 4px;
+        margin-bottom: 0;
+        flex-shrink: 1;
+/*        border: 1px solid black;*/
+    }
+
+    #featured p {
+        display: inline;
+        font-family: helvetica;
+        margin: 0;
+        line-height: 28px;
+        text-align: justify;
+    }
+     #two {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+/*        border: 1px solid black;*/
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    #three {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 6px 4px rgb(0,0,0,0.3);
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        z-index: 350;
+    }
+
+
+    #skewers {
+        position: fixed;
+        width: auto;
+        height: auto;
+        opacity: 0.4;
+        top: 17rem;
+        right: 8rem;
+        z-index: 1;
+    }
+    #moreinfo {
+        position: relative;
+        width: max(45vw,38rem);
+        max-width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: orange;
+/*        opacity: 0.5;*/
+        justify-content: center;
+        align-items: center;
+        height: 25rem;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    #moreinfo h2 {
+        font-family: Roboto;
+/*        font-size: 33px;*/
+        font-weight: 400;
+        text-align: center;
+    }
+    #moreinfo h3 {
+        font-family: NotoSansLight;
+        font-size: 33px;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    #moreinfo .seventy {
+        position: absolute;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: black;
+        width: 4rem;
+        height: 5rem;
+        padding: 10px;
+        left: 0px;
+        font-family: NotoSansLight;
+        font-size: 43px;
+        font-weight: 400;
+        color: gold;
+        border: none;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        background-blend-mode: luminosity;
+    }
+
+    #orderform {
+        box-sizing: border-box;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+/*        flex-wrap: wrap;*/
+        justify-content: flex-start;
+        align-items: center;
+        width: 55vw;
+        max-width: 100%;
+        height: 25rem;
+        background-color: rgba(0,12,0,0.9);
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    input[type='text'] {
+        width: 80%;
+        height: 3.2rem;
+        border: 3px solid white;
+        font-family: NotoSansLight;
+        font-size: 23px;
+        font-weight: 200;
+        color: orange;
+        margin: 12px;
+        border-radius: 5px;
+        z-index: 352;
+    }
+
+    input[type='number'] {
+        width: 80%;
+        height: 3.2rem;
+        border: 3px solid white;
+        font-family: NotoSansLight;
+        font-size: 23px;
+        font-weight: 200;
+        color: orange;
+        margin: 12px;
+        border-radius: 5px;
+        z-index: 353;
+    }
+
+    #orderform label {
+        text-align: left;
+        font-family: NotoSansLight;
+        font-size: 23px;
+        font-weight: 200;
+        color: gold;
+    }
+    #orderform select, option {
+        width: 80%;
+        height: 3.2rem;
+        border: 3px solid white;
+        font-family: NotoSansLight;
+        font-size: 23px;
+        font-weight: 200;
+        color: orange;
+        margin: 12px;
+        border-radius: 5px;
+        z-index: 354;
+    }
+
+    #submit-order {
+        cursor: pointer;
+        width: 80%;
+        max-width: 100%;
+        height: 3.4rem;
+        border: none;
+        font-family: NotoSansLight;
+        font-size: 23px;
+        font-weight: 200;
+        color: black;
+        margin: 12px;
+        border-radius: 5px;
+        background-color: orange;
+        padding: 10px;
+        z-index: 355;
+    }
+
+    footer {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: 40px;
+        color: white;
+        background-color: black;
+        text-align: center;
+        font-family: HPSimplified;
+        font-size: 20px;
+        padding: 12px 0;
+    }
+
+</style>
+</head>
+
+<body>
+<div id="mainbanner">
+    <div id="mainbanner_left">
+        <h2>Order <span class="textSetting">in</span> minutes</h2>
+        <p><span style="font-family: Magnetob; font-size: 5.6rem;
+    font-weight: bold;">Delivery</span>&nbsp;&nbsp;&nbsp;
+            <span style="font-family: NotoSansBold; font-size: 3rem;">in</span> </p>
+
+
+    </div>
+    <div id="mainbanner_right">
+        <ul class="menu">
+            <li><a href="index.html" class="cover">Home</a></li>
+            <li><a href="#three">Order</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    <button type="button" id="ordernow">Order Now</button>
+
+    <span class="hrsSetting">3hrs</span>
+</div>
+<main>
+<section id="one">
+<div id="callnow">Call Now</div>
+<fieldset style="display: flex; flex-direction: column; width: max(40vw,34rem); max-width: 100%;
+        border: 2px dotted orange; border-radius: 5px; flex-wrap: wrap; flex-shrink: 1;
+        padding: 20px;">
+
+<legend style="display: block; background-color: none;
+width: 13rem; max-width: 60%; height: 12rem; box-sizing: border-box; border: 4px solid orange;">
+    <img src="../static/images/pastameal-final.png" width="200" height="175" style="max-width: 100%; object-fit: cover;">
+</legend>
+    <i class="fa-solid fa-champagne-glasses" id="glass"></i>
+    <p style="font-family: Antonio; text-align: justify;"><span style="font-family: 'Lobster 1.4 Regular'; font-size: 2.1rem;">
+    Crave something delicious?</span> Get your favorite meals delivered fresh and fast right to your doorstep.
+    Whether you're in the mood for a spicy biryani, a cheesy pizza, or a healthy salad,
+    we've got you covered. Order now and enjoy a hassle-free dining experience!</p>
+
+</fieldset>
+<img src="./static/images/rolls.webp" id="rolls">
+<div id="featured">
+    <h2><i class="fa-solid fa-bowl-rice" id="rice"></i>FEATURED MENU</h2>
+    <div id="inner">
+    <img src="./static/images/burger-8869971_1280.jpg" width="450" height="376"/>
+    <p style="font-family: NotoSansLight;">Top class packaged meals/foods delivered fresh and fast right to your doorstep.
+    Whether you're in the mood for a spicy biryani, a cheesy pizza, or a healthy salad,
+    we've got you covered. Order now and enjoy a hassle-free dining experience!
+    Top class packaged meals/foods delivered fresh and fast right to your doorstep.
+    Whether you're in the mood for a spicy biryani, a cheesy pizza, or a healthy salad,
+    we've got you covered.Top class packaged meals/foods delivered fresh and fast right to your doorstep.
+    Whether you're in the mood for a spicy biryani, a cheesy pizza, or a healthy salad,
+    we've got you covered.Top class packaged meals/foods delivered fresh and fast right to your doorstep.
+    Whether you're in the mood for a spicy biryani, a cheesy pizza, or a healthy salad,
+    we've got you covered.delivered fresh and fast right to your doorstep.
+    Whether you're in the mood for a spicy biryani, a cheesy pizza, or a healthy salad,
+    we've got you covered.</p>
+    </div>
+</div>
+</section>
+<section id="two">
+    <section id="wrapper">
+        <h4><span class="top">TOP</span> ORDERS</h4>
+        <div id="carousel">
+            <div class="itembox"><img src="./static/images/chickenfood-removebg-preview.png">Price: &euro;2300</div>
+            <div class="itembox"><img src="./static/images/cupcake-2724.webp">Price: &euro;2300</div>
+            <div class="itembox"><img src="./static/images/castania-nuts-removebg-preview.png">Price: &euro;2300</div>
+            <div class="itembox"><img src="./static/images/cupcake-6653250_640-removebg-preview.png">Price: &euro;2300</div>
+            <div class="itembox"><img src="./static/images/kellogs-corn-flakes.jpg">Price: &euro;2300</div>
+            <div class="itembox"><img src="./static/images/coconut-chips.jpg">Price: &euro;2300</div>
+            <div class="itembox"><img src="./static/images/burger-8869971_1280.jpg">Price: &euro;2300</div>
+            <div class="itembox"><img src="./static/images/hyderabadi-biryani.png">Price: &euro;2300</div>
+        </div>
+        <div class="bottom">
+            <marquee behavior="scroll" direction="left">We deliver to the following locations: Ikeja, Lekki, Abeokuta and more...</marquee>
+        </div>
+    </section>
+</section>
+<section id="three">
+    <div id="moreinfo">
+        <i class="fa-solid fa-credit-card" id="card"></i>
+        <h2>Pay</h2>
+        <span class="seventy">70%</span><h3>on ordered items only, balance on delivery</h3>
+    </div>
+    <img src="./static/images/pork-skewers-final.png" id="skewers" width="270" height="270">
+    <form id="orderform">
+        <label for="Item">Pick an Item from menu ?</label>
+        <select id="Item" name="Item">
+            <option value="burger">Burger</option>
+            <option value="noodles">Noodles</option>
+            <option value="cocktail">Cocktail</option>
+            <option value="chicken">Spicy Chicken</option>
+            <option value="toast">Bread Toast</option>
+        </select>
+         <label for="Item">How many Items please ?</label>
+        <input type="number" id="number" name="number" placeholder="1">
+        <label for="Item">Location ?</label>
+        <input type="text" id="location" name="location" placeholder="Lagos">
+        <button type="submit" id="submit-order" value="submit-order">SUBMIT ORDER</button>
+    </form>
+</section>
+
+</main>
+<footer>Copyright &copy;. All rights reserved</footer>
+</body>
+</html>
